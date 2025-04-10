@@ -11,7 +11,7 @@
 
 ##  Scenario
 
-Management suspects that some employees may be using TOR browsers to bypass network security controls because recent network logs show unusual encrypted traffic patterns and connections to known TOR entry nodes. Additionally, there have been anonymous reports of employees discussing ways to access restricted sites during work hours. The goal is to detect any TOR usage and analyze related security incidents to mitigate potential risks. If any use of TOR is found, notify management.
+Recent network logs show unusual encrypted traffic patterns and connections to known TOR entry nodes. Additionally, there have been anonymous reports of employees discussing ways to access restricted sites during work hours. Therefore, Management suspects that some employees may be using TOR browsers to bypass network security controls. The goal of this project is to detect any TOR usage and analyze related security incidents and to mitigate any potential risks. The Management will be informed if any evidence of Tor network use is found. 
 
 ### High-Level TOR-Related IoC Discovery Plan
 
@@ -67,7 +67,7 @@ Searched for any indication that user `winonboarding` on `windows-vm-sam` device
 
 ```kql
 DeviceProcessEvents  
-| where DeviceName == "threat-hunt-lab"  
+| where DeviceName == "windows-vm-sam"  
 | where FileName has_any ("tor.exe", "firefox.exe", "tor-browser.exe")  
 | project Timestamp, DeviceName, AccountName, ActionType, FileName, FolderPath, SHA256, ProcessCommandLine  
 | order by Timestamp desc
