@@ -1,7 +1,7 @@
-# Threat Event (Unauthorized TOR Usage)
+# Threat Event: Unauthorized TOR Usage
 **Unauthorized TOR Browser Installation and Use**
 
-## Steps the "Bad Actor" took Create Logs and IoCs:
+## Steps the "Bad Actor" took and resulting Logs and IoCs:
 1. Download the TOR browser installer: https://www.torproject.org/download/
 2. Install it silently: ```tor-browser-windows-x86_64-portable-14.0.1.exe /S```
 3. Opens the TOR browser from the folder on the desktop
@@ -33,7 +33,7 @@
 |---------------------|------------------------------------------------------------------------------|
 | **Name**| DeviceNetworkEvents|
 | **Info**|https://learn.microsoft.com/en-us/defender-xdr/advanced-hunting-devicenetworkevents-table|
-| **Purpose**| Used to detect TOR network activity, specifically tor.exe and firefox.exe making connections over ports to be used by TOR (9001, 9030, 9040, 9050, 9051, 9150).|
+| **Purpose**| Used to detect TOR network activity, specifically 'tor.exe' and 'firefox.exe' making connections over ports commonly used by TOR (9001, 9030, 9040, 9050, 9051, 9150).|
 
 ---
 
@@ -47,7 +47,7 @@ DeviceFileEvents
 // TOR Browser being silently installed
 // Take note of two spaces before the /S (I don't know why)
 DeviceProcessEvents
-| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.1.exe  /S"
+| where ProcessCommandLine contains "tor-browser-windows-x86_64-portable-14.0.9.exe  /S"
 | project Timestamp, DeviceName, ActionType, FileName, ProcessCommandLine
 
 // TOR Browser or service was successfully installed and is present on the disk
